@@ -8,46 +8,6 @@
 abstract class Environment
 {
     /**
-     * @var string String of bytes used for a new line.
-     */
-    const NewLine = PHP_EOL;
-
-    /**
-     * @var int Indicates an unrecognized operating system.
-     */
-    const UnknownPlatform = 0;
-
-    /**
-     * @var int Indicates a Unix or Unix-based operating system.
-     */
-    const Unix = 1;
-
-    /**
-     * @var int Indicates a Windows operating system.
-     */
-    const Windows = 2;
-
-    /**
-     * @var int Indicates a Linux operating system or Linux distro.
-     */
-    const Linux = 5;
-
-    /**
-     * @var int Indicates a Mac OS X 10 or newer operating system.
-     */
-    const OSX = 9;
-
-    /**
-     * @var int Indicates a FreeBSD operating system.
-     */
-    const FreeBSD = 17;
-
-    /**
-     * @var int Indicates a Sun Solaris or OpenSolaris operating system.
-     */
-    const Solaris = 33;
-
-    /**
      * Gets the version of the currently executing PHP interpreter.
      *
      * @return Version
@@ -55,67 +15,6 @@ abstract class Environment
     public static function getVersion()
     {
         return new Version(PHP_VERSION);
-    }
-
-    /**
-     * Gets the operating system the environment is currently running on.
-     *
-     * @return int Bitmask representing the operating system constant.
-     *
-     * This method has not been tested on all platforms, so it may not detect untested platforms correctly.
-     */
-    public static function getPlatform()
-    {
-        // what does PHP say we are on?
-        $uname = strtolower(php_uname('s'));
-
-        // generic linux or linux distro (we don't care which)
-        if ($uname == 'linux' || file_exists('/proc/version')) {
-            return self::Linux;
-        }
-
-        // freebsd system
-        elseif ($uname == 'freebsd') {
-            return self::FreeBSD;
-        }
-
-        // some solaris return as 'SunOS'
-        elseif ($uname == 'sunos' || $uname == 'solaris') {
-            return self::Solaris;
-        }
-
-        // darwin is mac server name
-        elseif ($uname == 'darwin') {
-            return self::OSX;
-        }
-
-        // some unknown unix-based system
-        elseif ($uname == 'unix') {
-            return self::Unix;
-        }
-
-        // some name of win-something-or-other
-        elseif (substr($uname, 0, 3) === 'win') {
-            return self::Windows;
-        }
-
-        // we really have no idea
-        return self::UnknownPlatform;
-    }
-
-    /**
-     * Checks if the system is a given platform.
-     *
-     * Supports derivative operating systems. For example, if the platform is Linux, checking for Unix
-     * will also return true.
-     *
-     * @param int $platform The platform to check.
-     *
-     * @return bool True if the system is the given platform or a derivative.
-     */
-    public static function isPlatform($platform)
-    {
-        return self::getPlatform() & $platform;
     }
 
     /**
@@ -297,7 +196,7 @@ abstract class Environment
     public static function getTotalMemory()
     {
         // the linux way
-        if (self::isPlatform(self::Linux)) {
+        if (Platform::isOS(Platform::LINUX)) {
             // memory info file
             $data = file_get_contents('/proc/meminfo');
 
@@ -309,7 +208,7 @@ abstract class Environment
         }
 
         // windows system
-        elseif (self::isPlatform(self::Windows) && self::extensionAvailable('COM_DOTNET')) {
+        elseif (Platform::isOS(Platform::WINDOWS) && self::extensionAvailable('COM_DOTNET')) {
             // use the WMI
             $wmi = new \COM('winmgmts:');
 
@@ -335,7 +234,7 @@ abstract class Environment
     public static function getAvailableMemory()
     {
         // linux system
-        if (self::isPlatform(self::Linux)) {
+        if (Platform::isOS(Platform::LINUX)) {
             // memory info file
             $data = file_get_contents('/proc/meminfo');
 
@@ -347,7 +246,7 @@ abstract class Environment
         }
 
         // windows system
-        elseif (self::isPlatform(self::Windows) && self::extensionAvailable('COM_DOTNET')) {
+        elseif (Platform::isOS(Platform::WINDOWS) && self::extensionAvailable('COM_DOTNET')) {
             // use the WMI
             $wmi = new \COM('winmgmts:');
 
@@ -410,7 +309,7 @@ abstract class Environment
         }
 
         // generate the extension file name
-        if (self::isPlatform(self::Windows)) {
+        if (Platform::isOS(Platform::WINDOWS)) {
             $fileName = strtolower("php_{$extensionName}.dll");
         } else {
             $fileName = strtolower("{$extensionName}.so");
