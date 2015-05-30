@@ -259,6 +259,7 @@ abstract class Platform
             // If the message doesn't match the expression, it probably isn't
             // a distro description anyway.
             if (preg_match('/(\S+)\s+(\d+(\.\d+)*)/i', $issueMessage, $matches) === 1) {
+                $info['pretty_name'] = $matches[0];
                 $info['name'] = strtolower($matches[1]);
                 $info['release'] = $matches[2];
             }
