@@ -149,7 +149,7 @@ abstract class Platform
         }
 
         // some name of win-something-or-other
-        if (substr($uname, 0, 3) === 'win') {
+        if (substr($uname, 0, 3) === 'win' || substr($uname, 0, 6) === 'cygwin') {
             return self::WINDOWS;
         }
 
