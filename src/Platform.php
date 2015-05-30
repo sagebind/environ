@@ -142,73 +142,125 @@ abstract class Platform
             return $info;
         }
 
+        // Check for the uncommon LSB release file for release info. Only
+        // Ubuntu and Linux Mint actually use this I think.
+        if (is_file('/etc/lsb-release')) {
+            $release = self::parseReleaseFile('/etc/lsb-release');
+
+            // LSB release files are actually very tidy!
+            $info['name'] = strtolower($release['DISTRIB_ID']);
+            $info['release'] = $release['DISTRIB_RELEASE'];
+            $info['codename'] = $release['DISTRIB_CODENAME'];
+            $info['pretty_name'] = $release['DISTRIB_DESCRIPTION'];
+        }
+
         // If we're on a modern distro, we can use the "os-release" file that is
         // being standardized (thankfully) to find distro info. More info at
         // http://www.freedesktop.org/software/systemd/man/os-release.html
         // and http://0pointer.de/blog/projects/os-release.
-        if (is_file('/etc/os-release')) {
+        elseif (is_file('/etc/os-release')) {
             $release = self::parseReleaseFile('/etc/os-release');
 
-            $info['name'] = $release['id'];
-            if (isset($release['version_id'])) {
-                $info['version'] = $release['version_id'];
+            $info['name'] = $release['ID'];
+            if (isset($release['VERSION_ID'])) {
+                $info['release'] = $release['VERSION_ID'];
             }
-            if (isset($release['pretty_name'])) {
-                $info['pretty_name'] = $release['pretty_name'];
+            if (isset($release['PRETTY_NAME'])) {
+                $info['pretty_name'] = $release['PRETTY_NAME'];
             }
-
-            // There really isn't more to learn.
-            return $info;
         }
 
-        if (is_file('/etc/arch-release')) {
-            $info['name'] = 'arch';
-        }
+        // We couldn't find any generic information, so now look for specific
+        // distros by release files, issue info, anything. Add code below for
+        // identifying unrecognized or old distros.
 
-        if (is_file('/etc/debian_version')) {
-            $info['name'] = 'debian';
-        }
-
-        if (is_file('/etc/SuSE-release')) {
+        // SuSE; usually SLES
+        elseif (is_file('/etc/SuSE-release')) {
             $release = self::parseReleaseFile('/etc/SuSE-release');
 
             $info['name'] = 'suse';
 
-            if (isset($release['version'])) {
-                $info['version'] = $release['version'].'.'.$release['patchlevel'];
+            if (isset($release['VERSION'])) {
+                $info['release'] = $release['VERSION'].'.'.$release['PATCHLEVEL'];
             }
         }
 
-        if (is_file('/etc/fedora-release')) {
+        // Fedora
+        elseif (is_file('/etc/fedora-release')) {
             $info['name'] = 'fedora';
-        }
 
-        if (is_file('/etc/lsb-release')) {
-            $release = self::parseReleaseFile('/etc/lsb-release');
-
-            $info['name'] = 'ubuntu';
-            $info['version'] = $release['distrib_release'];
-            $info['codename'] = $release['distrib_codename'];
-            $info['pretty_name'] = $release['distrib_description'];
-        }
-
-        if (is_file('/etc/redhat-release')) {
-            $release = file_get_contents('/etc/redhat-release');
-
-            $info['name'] = 'redhat';
-
-            if (preg_match('/\d+(\.\d+)+/', $release, $matches) === 1) {
-                $info['version'] = $matches[0];
+            $release = file_get_contents('/etc/fedora-release');
+            if (preg_match('/[0-9\.]+/', $release, $matches) === 1) {
+                $info['release'] = $matches[1];
             }
         }
 
-        if (is_file('/etc/centos-release')) {
-            $release = file_get_contents('/etc/centos-release');
+        // Mandrake Linux
+        elseif (is_file('/etc/mandrake-release')) {
+            $info['name'] = 'mandrake';
 
+            $release = file_get_contents('/etc/mandrake-release');
+            if (preg_match('/[0-9\.]+/', $release, $matches) === 1) {
+                $info['release'] = $matches[0];
+            }
+        }
+
+        // CentOS and derivatives
+        elseif (is_file('/etc/centos-release')) {
             $info['name'] = 'centos';
 
-            if (preg_match('/\d+(\.\d+)+/', $release, $matches) === 1) {
-                $info['version'] = $matches[0];
+            $release = file_get_contents('/etc/centos-release');
+            if (preg_match('/[0-9\.]+/', $release, $matches) === 1) {
+                $info['release'] = $matches[0];
+            }
+        }
+
+        // Gentoo Linux
+        elseif (is_file('/etc/gentoo-release')) {
+            $info['name'] = 'gentoo';
+        }
+
+        // Slackware Linux
+        elseif (is_file('/etc/slackware-version')) {
+            $info['name'] = 'slackware';
+
+            $release = file_get_contents('/etc/slackware-version');
+            if (preg_match('/[0-9\.]+/', $release, $matches) === 1) {
+                $info['release'] = $matches[1];
+            }
+        }
+
+        // Redhat and derivatives
+        elseif (is_file('/etc/redhat-release')) {
+            $info['name'] = 'redhat';
+
+            $release = file_get_contents('/etc/redhat-release');
+            if (preg_match('/[0-9\.]+/', $release, $matches) === 1) {
+                $info['release'] = $matches[0];
+            }
+        }
+
+        // Check for Debian last to avoid false positives for the many Debian forks
+        elseif (is_file('/etc/debian_version')) {
+            $info['name'] = 'debian';
+
+            $release = file_get_contents('/etc/debian_version');
+            if (preg_match('/[0-9\.]+/', $release, $matches) === 1) {
+                $info['release'] = $matches[0];
+            }
+        }
+
+        // If we haven't found anything yet, see if there is any meaningful info
+        // in /etc/issue, which is somewhat common, but doesn't strictly contain
+        // distro info.
+        elseif (is_file('/etc/issue')) {
+            $issueMessage = file_get_contents('/etc/issue');
+
+            // If the message doesn't match the expression, it probably isn't
+            // a distro description anyway.
+            if (preg_match('/(\S+)\s+(\d+(\.\d+)*)/i', $issueMessage, $matches) === 1) {
+                $info['name'] = strtolower($matches[1]);
+                $info['release'] = $matches[2];
             }
         }
 
@@ -233,7 +285,7 @@ abstract class Platform
 
         $vars = [];
         foreach ($matches as $match) {
-            $vars[strtolower($match[1])] = $match[2];
+            $vars[strtoupper($match[1])] = $match[2];
         }
 
         return $vars;
