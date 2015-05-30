@@ -1,0 +1,15 @@
+#!/usr/bin/env php
+<?php
+
+use Environment\Platform;
+
+if (!ini_get('date.timezone')) {
+    ini_set('date.timezone', 'UTC');
+}
+
+require dirname(__DIR__).'/vendor/autoload.php';
+
+printf("CPU architecture: %s\n", Platform::getArch());
+printf("Number of processors: %d\n", Platform::getCpuCount());
+printf("OS: %s\n", Platform::getOSName());
+printf("Linux Distribution: %s\n", json_encode(Platform::linuxDistribution(), JSON_PRETTY_PRINT));
