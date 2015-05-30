@@ -21,10 +21,10 @@ Extremely simple usage; there are a few stateless classes that provide static me
 ```php
 use Environment\Platform;
 
-printf('CPU architecture: %s\n', Platform::getArch());
-printf('Number of CPU cores: %d\n', Platform::getCpuCount());
-printf('Operating system: %s\n', Platform::getOS());
-printf('Linux distro: %s\n', Platform::linuxDistribution());
+printf("CPU architecture: %s\n", Platform::getArch());
+printf("Number of CPU cores: %d\n", Platform::getCpuCount());
+printf("Operating system: %s\n", Platform::getOS());
+printf("Linux distro: %s\n", Platform::linuxDistribution());
 ```
 
 ## Contributing
