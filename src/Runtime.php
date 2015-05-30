@@ -1,5 +1,5 @@
 <?php
-namespace Envir;
+namespace Environment;
 
 /**
  * Provides information about the current PHP runtime.
