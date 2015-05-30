@@ -1,4 +1,4 @@
-# Environment
+# Environ
 [![License](https://img.shields.io/packagist/l/coderstephen/environment.svg)](https://packagist.org/packages/coderstephen/environment)
 
 A simple package for discovering information about an execution environment and platform. Generic name, generic purpose.
@@ -12,23 +12,23 @@ The purpose of this package is to provide a simple interface for discovering inf
 Install with [Composer](http://getcomposer.org), obviously:
 
 ```sh
-$ composer require coderstephen/environment
+$ composer require coderstephen/environ
 ```
 
 ## Usage
 Extremely simple usage; there are a few stateless classes that provide static methods for querying the system. Below is an example that displays various information:
 
 ```php
-use Environment\Platform;
+use Environ\Platform;
 
 printf("CPU architecture: %s\n", Platform::getArch());
 printf("Number of CPU cores: %d\n", Platform::getCpuCount());
-printf("Operating system: %s\n", Platform::getOS());
+printf("Operating system: %s\n", Platform::getOSName());
 printf("Linux distro: %s\n", Platform::linuxDistribution());
 ```
 
 ## Contributing
-Want to contribute? The best way to contribute is to test the code on a wide array of systems with varying setups and to verify the results are as expected. If they aren't, just [create a new issue](https://github.com/coderstephen/environment/issues/new) here on GitHub and we will fix it. If you are adventurous, feel free to fork, patch & submit a pull request that fixes the issue as well.
+Want to contribute? The best way to contribute is to test the code on a wide array of systems with varying setups and to verify the results are as expected. If they aren't, just [create a new issue](https://github.com/coderstephen/environ/issues/new) here on GitHub and we will fix it. If you are adventurous, feel free to fork, patch & submit a pull request that fixes the issue as well.
 
 ## License
 This library is licensed under the MIT license. See the [LICENSE](LICENSE) file for details.
