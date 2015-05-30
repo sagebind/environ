@@ -126,12 +126,6 @@ abstract class Platform
             return file_get_contents('/etc/release');
         }
 
-        // Windows takes a little more work. We won't try to determine if the
-        // release is XP, Server 2008, or anything like that. Just get the
-        // version number that Microsoft uses, like 6.2 for Windows 8.
-        if (self::isOS(self::WINDOWS)) {
-        }
-
         // For Windows, Linux and other UNIXes, just return the uname release.
         return php_uname('r');
     }
