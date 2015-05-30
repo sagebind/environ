@@ -1,4 +1,5 @@
 <?php
+namespace Envir;
 
 /**
  * Provides methods for getting information about the current application environment.

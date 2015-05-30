@@ -1,4 +1,5 @@
 <?php
+namespace Envir;
 
 /**
  * Provides information about the current system platform.
