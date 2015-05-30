@@ -29,7 +29,7 @@ printf('Linux distro: %s\n', Platform::linuxDistribution());
 ```
 
 ## Contributing
-Want to contribute? The best way to contribute is to test the code on a wide array of systems with varying setups and to verify the results are as expected. If they aren't, just [create a new issue](https://github.com/evflow/evflow/issues/new) here on GitHub and we will fix it. If you are adventurous, feel free to fork, patch & submit a pull request that fixes the issue as well.
+Want to contribute? The best way to contribute is to test the code on a wide array of systems with varying setups and to verify the results are as expected. If they aren't, just [create a new issue](issues/new) here on GitHub and we will fix it. If you are adventurous, feel free to fork, patch & submit a pull request that fixes the issue as well.
 
 ## License
 This library is licensed under the MIT license. See the [LICENSE](LICENSE) file for details.
