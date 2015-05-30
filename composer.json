@@ -1,0 +1,17 @@
+{
+    "name": "coderstephen/envir",
+    "license": "MIT",
+    "description": "Simple package for getting environment and platform information",
+    "authors": [{
+        "name": "Stephen Coakley",
+        "email": "me@stephencoakley.com"
+    }],
+    "require": {
+        "php": ">=5.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Envir\\": "src"
+        }
+    }
+}
