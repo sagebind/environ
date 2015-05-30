@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
-
 use Environ\Platform;
+use Environ\Runtime;
 
 if (!ini_get('date.timezone')) {
     ini_set('date.timezone', 'UTC');
@@ -9,7 +9,16 @@ if (!ini_get('date.timezone')) {
 
 require dirname(__DIR__).'/vendor/autoload.php';
 
-printf("CPU architecture: %s\n", Platform::getArch());
-printf("Number of processors: %d\n", Platform::getCpuCount());
-printf("OS: %s\n", Platform::getOSName());
-printf("Linux Distribution: %s\n", json_encode(Platform::linuxDistribution(), JSON_PRETTY_PRINT));
+printf('-- Platform --%s', PHP_EOL);
+printf("Machine name:\t\t: %s%s", Platform::getMachineName(), PHP_EOL);
+printf("Operating system\t: %s%s", Platform::getOSName(), PHP_EOL);
+printf("OS release\t\t: %s%s", Platform::release(), PHP_EOL);
+printf("OS version\t\t: %s%s", Platform::version(), PHP_EOL);
+printf("Linux distribution: %s%s", json_encode(Platform::linuxDistribution(), JSON_PRETTY_PRINT), PHP_EOL);
+printf("CPU architecture:\t: %s%s", Platform::getArch(), PHP_EOL);
+printf("Number of processors\t: %d%s", Platform::getCpuCount(), PHP_EOL);
+
+printf('%s-- Runtime --%1$s', PHP_EOL);
+printf("Interpreter binary\t: %s%s", Runtime::path(), PHP_EOL);
+printf("Version\t\t\t: %s%s", Runtime::version(), PHP_EOL);
+printf("64-bit\t\t\t: %s%s", Runtime::is64Bit() ? 'yes' : 'no', PHP_EOL);
