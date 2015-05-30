@@ -104,27 +104,49 @@ abstract class Platform
     }
 
     /**
-     * Gets the platform version.
+     * Gets the platform release; typically a version string.
+     *
+     * This method tries really hard to return an alphanumeric string, maybe
+     * even in SemVer format, but there are no guarantees.
+     *
+     * @see https://msdn.microsoft.com/library/windows/desktop/ms724832.aspx for
+     * a guide on what Windows release versions can indicate.
+     *
+     * @return string
+     */
+    public static function release()
+    {
+        // OS X has its own way of doing things.
+        if (self::isOS(self::DARWIN)) {
+            return self::getOSXRelease();
+        }
+
+        // Solaris and SunOS store release info in a file, like a good UNIX.
+        if (self::isOS(self::SOLARIS)) {
+            return file_get_contents('/etc/release');
+        }
+
+        // Windows takes a little more work. We won't try to determine if the
+        // release is XP, Server 2008, or anything like that. Just get the
+        // version number that Microsoft uses, like 6.2 for Windows 8.
+        if (self::isOS(self::WINDOWS)) {
+        }
+
+        // For Windows, Linux and other UNIXes, just return the uname release.
+        return php_uname('r');
+    }
+
+    /**
+     * Gets the platform version; typically includes build information.
      *
      * Note that the version returned varies widely depending on platform
      * specifics. You will need to determine the platform first before the
      * version can be used in any sort of meaningful way.
      *
-     * @return string A version string.
+     * @return string A string that probably includes some version information.
      */
     public static function version()
     {
-        // OS X has its own way of doing things.
-        if (self::isOS(self::DARWIN)) {
-            return self::getOSXVersion();
-        }
-
-        // On Linux systems, return the version of the Linux kernel being used.
-        if (self::isOS(self::LINUX)) {
-            return php_uname('r');
-        }
-
-        // Just return whatever the version string is for everyone else.
         return php_uname('v');
     }
 
@@ -298,7 +320,7 @@ abstract class Platform
      *
      * @return string
      */
-    private static function getOSXVersion()
+    private static function getOSXRelease()
     {
         $systemVersion = new \DOMDocument();
         $systemVersion->loadXML('/System/Library/CoreServices/SystemVersion.plist');
