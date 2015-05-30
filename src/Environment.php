@@ -179,14 +179,19 @@ abstract class Environment
     /**
      * Checks if the environment is running in a 64-bit environment.
      *
-     * Note that PHP currently does not support 64-bit on Windows, even if the build and the system
-     * are both 64-bit. As a result, this method will always return false on Windows.
+     * Note that this checks for support for 64-bit operations in the PHP
+     * runtime, not the system architecture. To check if the system is 64-bit,
+     * {@see Platform::is64Bit()}.
+     *
+     * Note that versions older than PHP7 did not support true 64-bit on
+     * Windows. As a result, this method will always return false on older
+     * versions of PHP on Windows.
      *
      * @return bool True if the environment is 64-bit, otherwise false.
      */
     public static function is64Bit()
     {
-        return PHP_INT_MAX > 2147483647;
+        return PHP_INT_SIZE === 8;
     }
 
     /**
