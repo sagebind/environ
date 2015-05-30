@@ -158,6 +158,35 @@ abstract class Platform
     }
 
     /**
+     * Gets the operating system name.
+     *
+     * @return string The operating system name.
+     */
+    public static function getOSName()
+    {
+        switch (self::getOS()) {
+            case self::LINUX:
+                return 'Linux';
+            case self::FREEBSD:
+                return 'FreeBSD';
+            case self::SOLARIS:
+                return 'SunOS/Solaris';
+            case self::DARWIN:
+                return 'Mac OS X';
+            case self::HP_UX:
+                return 'HP-UX';
+            case self::AIX:
+                return 'IBM AIX';
+            case self::WINDOWS:
+                return 'Windows';
+            case self::UNIX:
+                return 'UNIX';
+            default:
+                return 'unknown';
+        }
+    }
+
+    /**
      * Checks if the system is a given platform.
      *
      * Supports derivative operating systems. For example, if the platform is Linux, checking for Unix
