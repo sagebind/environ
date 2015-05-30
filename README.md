@@ -18,8 +18,7 @@ $ composer require coderstephen/environment
 ## Usage
 Extremely simple usage; there are a few stateless classes that provide static methods for querying the system. Below is an example that displays various information:
 
-```
-<?php
+```php
 use Environment\Platform;
 
 printf('CPU architecture: %s\n', Platform::getArch());
