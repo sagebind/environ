@@ -24,9 +24,9 @@ abstract class Runtime
         return PHP_INT_SIZE === 8;
     }
 
-    public function path()
+    public static function path()
     {
-        return PHP_BINDIR;
+        return PHP_BINARY;
     }
 
     public static function version()
