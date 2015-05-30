@@ -37,9 +37,68 @@ abstract class Platform
     const FREEBSD = 0b10001;
 
     /**
+     * @var int Hewlett-Packard UNIX systems.
+     */
+    const HP_UX = 0b100001;
+
+    /**
+     * @var int IBM AIX (Advanced Interactive eXecutive) systems.
+     */
+    const AIX = 0b1000001;
+
+    /**
      * @var int Indicates a Sun Solaris/SunOS or OpenSolaris operating system.
      */
-    const SOLARIS = 0b100001;
+    const SOLARIS = 0b10000001;
+
+    /**
+     * Gets the number of logical processors on the system.
+     *
+     * @return int The number of processors.
+     */
+    public static function getCpuCount()
+    {
+        // Most UNIX systems
+        if (is_file('/proc/cpuinfo')) {
+            $cpuinfo = file_get_contents('/proc/cpuinfo');
+            return substr_count($cpuinfo, 'processor');
+        }
+
+        // Use WMI on Windows
+        if (self::isOS(self::WINDOWS)) {
+            if (@exec('wmic cpu get NumberOfCores', $output) !== false) {
+                return intval($output[1]);
+            }
+        }
+
+        // Use sysctl as a last resort on other systems, like old BSD releases
+        $ncpu = @exec('sysctl -n hw.ncpu');
+        if ($ncpu !== false) {
+            return intval($ncpu);
+        }
+
+        return 1;
+    }
+
+    /**
+     * Gets the CPU architecture.
+     *
+     * @return string The CPU architecture name.
+     */
+    public static function getArch()
+    {
+        return php_uname('m');
+    }
+
+    /**
+     * Gets the name of the local computer.
+     *
+     * @return string The NetBIOS name or hostname of the local computer.
+     */
+    public static function getMachineName()
+    {
+        return php_uname('n');
+    }
 
     /**
      * Gets the operating system the environment is currently running on.
@@ -55,32 +114,42 @@ abstract class Platform
         $uname = strtolower(php_uname('s'));
 
         // generic linux or linux distro (we don't care which)
-        if ($uname == 'linux' || file_exists('/proc/version')) {
+        if ($uname === 'linux' || file_exists('/proc/version')) {
             return self::LINUX;
         }
 
         // freebsd system
-        elseif ($uname == 'freebsd') {
+        if ($uname === 'freebsd') {
             return self::FREEBSD;
         }
 
         // some solaris return as 'SunOS'
-        elseif ($uname == 'sunos' || $uname == 'solaris') {
+        if ($uname === 'sunos' || $uname === 'solaris') {
             return self::SOLARIS;
         }
 
         // darwin-based; no way to tell for sure if it is OS X
-        elseif ($uname == 'darwin') {
+        if ($uname === 'darwin') {
             return self::DARWIN;
         }
 
+        // HP-UX system
+        if ($uname === 'hp-ux') {
+            return self::HP_UX;
+        }
+
+        // IBM AIX
+        if ($uname === 'aix') {
+            return self::AIX;
+        }
+
         // some unknown unix-based system
-        elseif ($uname == 'unix') {
+        if ($uname === 'unix') {
             return self::UNIX;
         }
 
         // some name of win-something-or-other
-        elseif (substr($uname, 0, 3) === 'win') {
+        if (substr($uname, 0, 3) === 'win') {
             return self::WINDOWS;
         }
 
