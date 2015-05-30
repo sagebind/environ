@@ -214,7 +214,7 @@ abstract class Platform
 
             $release = file_get_contents('/etc/fedora-release');
             if (preg_match('/[0-9\.]+/', $release, $matches) === 1) {
-                $info['release'] = $matches[1];
+                $info['release'] = $matches[0];
             }
         }
 
@@ -249,7 +249,7 @@ abstract class Platform
 
             $release = file_get_contents('/etc/slackware-version');
             if (preg_match('/[0-9\.]+/', $release, $matches) === 1) {
-                $info['release'] = $matches[1];
+                $info['release'] = $matches[0];
             }
         }
 
