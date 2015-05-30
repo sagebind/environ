@@ -1,5 +1,5 @@
 {
-    "name": "coderstephen/envir",
+    "name": "coderstephen/environment",
     "license": "MIT",
     "description": "Simple package for getting environment and platform information",
     "authors": [{
@@ -11,7 +11,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Envir\\": "src"
+            "Environment\\": "src"
         }
     }
 }
