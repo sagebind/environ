@@ -198,7 +198,13 @@ abstract class Platform
      */
     public static function isOS($os)
     {
-        return (self::getOS() & $os) === $os;
+        foreach (func_get_args() as $os) {
+            if ((self::getOS() & $os) === $os) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
