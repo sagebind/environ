@@ -52,7 +52,7 @@ abstract class Platform
     const SOLARIS = 0b10000001;
 
     /**
-     * Gets the number of logical processors on the system.
+     * Gets the number of logical processor cores available on the system.
      *
      * @return int The number of processors.
      */
@@ -100,7 +100,7 @@ abstract class Platform
     }
 
     /**
-     * Gets the CPU architecture.
+     * Gets the architecture name of the CPU processor.
      *
      * @return string The CPU architecture name.
      */
@@ -110,9 +110,9 @@ abstract class Platform
     }
 
     /**
-     * Gets the name of the local computer.
+     * Gets the NetBIOS name or hostname of the current machine.
      *
-     * @return string The NetBIOS name or hostname of the local computer.
+     * @return string The name of the current machine.
      */
     public static function getMachineName()
     {
@@ -121,6 +121,18 @@ abstract class Platform
 
     /**
      * Gets the operating system the environment is currently running on.
+     *
+     * Returns one of several flags that indicates a particular operating system.
+     * Below is a list of possible values:
+     *
+     * - `Platform::UNIX`
+     * - `Platform::LINUX`
+     * - `Platform::FREEBSD`
+     * - `Platform::DARWIN`
+     * - `Platform::WINDOWS`
+     * - `Platform::SOLARIS`
+     * - `Platform::HP_UX`
+     * - `Platform::AIX`
      *
      * This method has not been tested on all platforms, so it may not detect
      * untested platforms correctly.
@@ -211,10 +223,21 @@ abstract class Platform
     /**
      * Checks if the system is a given platform.
      *
-     * Supports derivative operating systems. For example, if the platform is
-     * Linux, checking for Unix will also return true.
+     * This returns true if the running OS matches the one given, or if it is a
+     * derivative. For example, if you call `Platform::isOS(Platform::UNIX)` on
+     * a FreeBSD system, it will return true, since FreeBSD is UNIX-like.
      *
-     * @param int $platform The platform to check.
+     * Note that you can check if the running OS is one of a list of OSes by
+     * passing multiple values. For example:
+     *
+     * <code>
+     * // Check if we are on either FreeBSD or Solaris
+     * if (Platform::isOS(Platform::FREEBSD, Platform::SOLARIS)) {
+     *     echo 'We are on FreeBSD or Solaris!' . PHP_EOL;
+     * }
+     * </code>
+     *
+     * @param int $os One or more OS flag constants to check.
      *
      * @return bool True if the system is the given OS or a derivative, otherwise false.
      */
@@ -230,12 +253,12 @@ abstract class Platform
     }
 
     /**
-     * Gets the platform release; typically a version string.
+     * Gets the platform release as a version string.
      *
      * This method tries really hard to return an alphanumeric string, maybe
      * even in SemVer format, but there are no guarantees.
      *
-     * {@see https://msdn.microsoft.com/library/windows/desktop/ms724832.aspx)
+     * {@see https://msdn.microsoft.com/library/windows/desktop/ms724832.aspx}
      * for a guide on what Windows release versions can indicate.
      *
      * @return string A release version string.
@@ -272,6 +295,17 @@ abstract class Platform
 
     /**
      * Gets the Linux distribution information.
+     *
+     * Returns an associative array of strings containing information about the
+     * Linux distribution if the current OS is Linux. If the OS is not Linux, or
+     * if no known distribution was detected, an empty array is returned.
+     *
+     * Below is a list of possible keys returned:
+     *
+     * - `name`: The name of the distribution.
+     * - `release`: The release version.
+     * - `codename`: A codename for the current release.
+     * - `pretty_name`: A formatted name suitable for display.
      *
      * @return array An associative array of all possible information about the
      *               distribution that could be determined.
