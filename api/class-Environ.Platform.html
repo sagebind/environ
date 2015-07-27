@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class Environ\Platform</title>
+
+	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
+	<link rel="stylesheet" href="resources/style.css?a2b5efb503881470385230f40f9bcc3c94d665e7">
+
+</head>
+
+<body>
+	<nav id="navigation" class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a href="index.html" class="navbar-brand">Overview</a>
+			</div>
+			<div class="collapse navbar-collapse">
+
+                <form id="search" class="navbar-form navbar-left" role="search">
+                    <input type="hidden" name="cx" value="">
+                    <input type="hidden" name="ie" value="UTF-8">
+                    <div class="form-group">
+                        <input type="text" name="q" class="search-query form-control" placeholder="Search">
+					</div>
+				</form>
+
+				<ul class="nav navbar-nav">
+					<li>
+						<a href="namespace-Environ.html" title="Summary of Environ"><span>Namespace</span></a>
+					</li>
+					<li class="active">
+<span>Class</span>					</li>
+
+
+
+
+
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div id="left">
+	<div id="menu">
+
+		<div id="groups">
+				<h3>Namespaces</h3>
+			<ul>
+					<li class="active">
+						<a href="namespace-Environ.html">
+							Environ						</a>
+							</li>
+			</ul>
+		</div>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li class="active"><a href="class-Environ.Platform.html">Platform</a></li>
+				<li><a href="class-Environ.Runtime.html">Runtime</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+	<div id="rightInner">
+<div id="content" class="class">
+	<h1>Class Platform</h1>
+
+
+	<div class="description">
+	<p>Provides information about the current system platform.</p>
+	</div>
+
+
+
+
+
+
+
+
+
+	<div class="alert alert-info">
+		<b>Abstract</b><br>
+		
+		<b>Namespace:</b> <a href="namespace-Environ.html">Environ</a><br>
+		
+
+			<b>Located at</b> <a href="source-class-Environ.Platform.html#4-492" title="Go to source code">Platform.php</a>
+		<br>
+	</div>
+
+
+
+		<div class="panel panel-default">
+			<div class="panel-heading"><h2>Methods summary</h2></div>
+			<table class="summary table table-bordered table-striped methods" id="methods">
+		<tr data-order="getCpuCount" id="_getCpuCount">
+
+			<td class="attributes"><code>
+				 public static
+				integer
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getCpuCount">#</a>
+			<code><a href="source-class-Environ.Platform.html#54-81" title="Go to source code">getCpuCount</a>( )</code>
+
+			<div class="description short">
+				<p>Gets the number of logical processor cores available on the system.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Gets the number of logical processor cores available on the system.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						integer<br>The number of processors.
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="is64Bit" id="_is64Bit">
+
+			<td class="attributes"><code>
+				 public static
+				boolean
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_is64Bit">#</a>
+			<code><a href="source-class-Environ.Platform.html#83-100" title="Go to source code">is64Bit</a>( )</code>
+
+			<div class="description short">
+				<p>Checks if the system platform is 64-bit capable.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Checks if the system platform is 64-bit capable.</p>
+
+<p>Note that this does not necessarily represent the architecture or 64-bit
+capabilities of the processor(s); this merely checks if the platform or
+operating system is 64-bit. These things may be different on, for example,
+a 32-bit version of Windows on a 64-bit machine.</p>
+
+<p>In addition, even if this function returns true, the current PHP runtime
+may not be 64-bit. To check if the runtime is also 64-bit, use
+<a href="Runtime::is64Bit()">Runtime::is64Bit()</a>.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						boolean<br>True if the platform is 64-bit, otherwise false.
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getArch" id="_getArch">
+
+			<td class="attributes"><code>
+				 public static
+				string
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getArch">#</a>
+			<code><a href="source-class-Environ.Platform.html#102-110" title="Go to source code">getArch</a>( )</code>
+
+			<div class="description short">
+				<p>Gets the architecture name of the CPU processor.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Gets the architecture name of the CPU processor.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						string<br>The CPU architecture name.
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getMachineName" id="_getMachineName">
+
+			<td class="attributes"><code>
+				 public static
+				string
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getMachineName">#</a>
+			<code><a href="source-class-Environ.Platform.html#112-120" title="Go to source code">getMachineName</a>( )</code>
+
+			<div class="description short">
+				<p>Gets the NetBIOS name or hostname of the current machine.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Gets the NetBIOS name or hostname of the current machine.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						string<br>The name of the current machine.
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getOS" id="_getOS">
+
+			<td class="attributes"><code>
+				 public static
+				integer
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getOS">#</a>
+			<code><a href="source-class-Environ.Platform.html#122-189" title="Go to source code">getOS</a>( )</code>
+
+			<div class="description short">
+				<p>Gets the operating system the environment is currently running on.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Gets the operating system the environment is currently running on.</p>
+
+<p>Returns one of several flags that indicates a particular operating system.
+Below is a list of possible values:</p>
+
+<ul>
+<li><code>Platform::UNIX</code></li>
+<li><code>Platform::LINUX</code></li>
+<li><code>Platform::FREEBSD</code></li>
+<li><code>Platform::DARWIN</code></li>
+<li><code>Platform::WINDOWS</code></li>
+<li><code>Platform::SOLARIS</code></li>
+<li><code>Platform::HP_UX</code></li>
+<li><code>Platform::AIX</code></li>
+</ul>
+
+<p>This method has not been tested on all platforms, so it may not detect
+untested platforms correctly.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						integer<br>Bitmask representing the operating system constant.
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getOSName" id="_getOSName">
+
+			<td class="attributes"><code>
+				 public static
+				string
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getOSName">#</a>
+			<code><a href="source-class-Environ.Platform.html#191-221" title="Go to source code">getOSName</a>( )</code>
+
+			<div class="description short">
+				<p>Gets an operating system name suitable for display purposes.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Gets an operating system name suitable for display purposes.</p>
+
+<p>This returns a string that corresponds to the operating system returned
+by <a href="Platform::getOS()">Platform::getOS()</a>, not the name returned by the system itself.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						string<br>The operating system name.
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="isOS" id="_isOS">
+
+			<td class="attributes"><code>
+				 public static
+				boolean
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_isOS">#</a>
+			<code><a href="source-class-Environ.Platform.html#223-253" title="Go to source code">isOS</a>( <span>integer <var>$os</var></span> )</code>
+
+			<div class="description short">
+				<p>Checks if the system is a given platform.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Checks if the system is a given platform.</p>
+
+<p>This returns true if the running OS matches the one given, or if it is a
+derivative. For example, if you call <code>Platform::isOS(Platform::UNIX)</code> on
+a FreeBSD system, it will return true, since FreeBSD is UNIX-like.</p>
+
+<p>Note that you can check if the running OS is one of a list of OSes by
+passing multiple values. For example:</p>
+
+<pre><span class="php-comment">// Check if we are on either FreeBSD or Solaris</span>
+<span class="php-keyword1">if</span> (Platform::isOS(Platform::FREEBSD, Platform::SOLARIS)) {
+    <span class="php-keyword1">echo</span> <span class="php-quote">'We are on FreeBSD or Solaris!'</span> . PHP_EOL;
+}</pre>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$os</var></dt>
+						<dd>One or more OS flag constants to check.</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						boolean<br>True if the system is the given OS or a derivative, otherwise false.
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="release" id="_release">
+
+			<td class="attributes"><code>
+				 public static
+				string
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_release">#</a>
+			<code><a href="source-class-Environ.Platform.html#255-280" title="Go to source code">release</a>( )</code>
+
+			<div class="description short">
+				<p>Gets the platform release as a version string.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Gets the platform release as a version string.</p>
+
+<p>This method tries really hard to return an alphanumeric string, maybe
+even in SemVer format, but there are no guarantees.</p>
+
+<p><a href="https://msdn.microsoft.com/library/windows/desktop/ms724832.aspx">https://msdn.microsoft.com/library/windows/desktop/ms724832.aspx</a>
+for a guide on what Windows release versions can indicate.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						string<br>A release version string.
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="version" id="_version">
+
+			<td class="attributes"><code>
+				 public static
+				string
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_version">#</a>
+			<code><a href="source-class-Environ.Platform.html#282-294" title="Go to source code">version</a>( )</code>
+
+			<div class="description short">
+				<p>Gets the platform version; typically includes build information.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Gets the platform version; typically includes build information.</p>
+
+<p>Note that the version returned varies widely depending on platform
+specifics. You will need to determine the platform first before the
+version can be used in any sort of meaningful way.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						string<br>A string that probably includes some version information.
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="linuxDistribution" id="_linuxDistribution">
+
+			<td class="attributes"><code>
+				 public static
+				array
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_linuxDistribution">#</a>
+			<code><a href="source-class-Environ.Platform.html#296-446" title="Go to source code">linuxDistribution</a>( )</code>
+
+			<div class="description short">
+				<p>Gets the Linux distribution information.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Gets the Linux distribution information.</p>
+
+<p>Returns an associative array of strings containing information about the
+Linux distribution if the current OS is Linux. If the OS is not Linux, or
+if no known distribution was detected, an empty array is returned.</p>
+
+<p>Below is a list of possible keys returned:</p>
+
+<ul>
+<li><code>name</code>: The name of the distribution.</li>
+<li><code>release</code>: The release version.</li>
+<li><code>codename</code>: A codename for the current release.</li>
+<li><code>pretty_name</code>: A formatted name suitable for display.</li>
+</ul>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						array<br><p>An associative array of all possible information about the
+              distribution that could be determined.</p>
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+			</table>
+		</div>
+
+
+
+
+
+
+
+
+		<div class="panel panel-default">
+            <div class="panel-heading"><h2>Constants summary</h2></div>
+			<table class="summary table table-bordered table-striped constants" id="constants">
+			<tr data-order="UNKNOWN" id="UNKNOWN">
+
+				<td class="attributes"><code>integer</code></td>
+				<td class="name">
+					<code>
+						<a href="source-class-Environ.Platform.html#9-12" title="Go to source code"><b>UNKNOWN</b></a>
+					</code>
+
+					<div class="description short">
+						
+					</div>
+
+					<div class="description detailed hidden">
+						
+
+					</div>
+				</td>
+				<td class="value">
+					<div>
+						<a href="#UNKNOWN" class="anchor">#</a>
+						<code><span class="php-num">0</span></code>
+					</div>
+				</td>
+			</tr>
+			<tr data-order="UNIX" id="UNIX">
+
+				<td class="attributes"><code>integer</code></td>
+				<td class="name">
+					<code>
+						<a href="source-class-Environ.Platform.html#14-17" title="Go to source code"><b>UNIX</b></a>
+					</code>
+
+					<div class="description short">
+						
+					</div>
+
+					<div class="description detailed hidden">
+						
+
+					</div>
+				</td>
+				<td class="value">
+					<div>
+						<a href="#UNIX" class="anchor">#</a>
+						<code><span class="php-num">0b00000001</span></code>
+					</div>
+				</td>
+			</tr>
+			<tr data-order="WINDOWS" id="WINDOWS">
+
+				<td class="attributes"><code>integer</code></td>
+				<td class="name">
+					<code>
+						<a href="source-class-Environ.Platform.html#19-22" title="Go to source code"><b>WINDOWS</b></a>
+					</code>
+
+					<div class="description short">
+						
+					</div>
+
+					<div class="description detailed hidden">
+						
+
+					</div>
+				</td>
+				<td class="value">
+					<div>
+						<a href="#WINDOWS" class="anchor">#</a>
+						<code><span class="php-num">0b00000010</span></code>
+					</div>
+				</td>
+			</tr>
+			<tr data-order="LINUX" id="LINUX">
+
+				<td class="attributes"><code>integer</code></td>
+				<td class="name">
+					<code>
+						<a href="source-class-Environ.Platform.html#24-27" title="Go to source code"><b>LINUX</b></a>
+					</code>
+
+					<div class="description short">
+						
+					</div>
+
+					<div class="description detailed hidden">
+						
+
+					</div>
+				</td>
+				<td class="value">
+					<div>
+						<a href="#LINUX" class="anchor">#</a>
+						<code><span class="php-num">0b00000101</span></code>
+					</div>
+				</td>
+			</tr>
+			<tr data-order="DARWIN" id="DARWIN">
+
+				<td class="attributes"><code>integer</code></td>
+				<td class="name">
+					<code>
+						<a href="source-class-Environ.Platform.html#29-32" title="Go to source code"><b>DARWIN</b></a>
+					</code>
+
+					<div class="description short">
+						
+					</div>
+
+					<div class="description detailed hidden">
+						
+
+					</div>
+				</td>
+				<td class="value">
+					<div>
+						<a href="#DARWIN" class="anchor">#</a>
+						<code><span class="php-num">0b00001001</span></code>
+					</div>
+				</td>
+			</tr>
+			<tr data-order="FREEBSD" id="FREEBSD">
+
+				<td class="attributes"><code>integer</code></td>
+				<td class="name">
+					<code>
+						<a href="source-class-Environ.Platform.html#34-37" title="Go to source code"><b>FREEBSD</b></a>
+					</code>
+
+					<div class="description short">
+						
+					</div>
+
+					<div class="description detailed hidden">
+						
+
+					</div>
+				</td>
+				<td class="value">
+					<div>
+						<a href="#FREEBSD" class="anchor">#</a>
+						<code><span class="php-num">0b00010001</span></code>
+					</div>
+				</td>
+			</tr>
+			<tr data-order="HP_UX" id="HP_UX">
+
+				<td class="attributes"><code>integer</code></td>
+				<td class="name">
+					<code>
+						<a href="source-class-Environ.Platform.html#39-42" title="Go to source code"><b>HP_UX</b></a>
+					</code>
+
+					<div class="description short">
+						
+					</div>
+
+					<div class="description detailed hidden">
+						
+
+					</div>
+				</td>
+				<td class="value">
+					<div>
+						<a href="#HP_UX" class="anchor">#</a>
+						<code><span class="php-num">0b00100001</span></code>
+					</div>
+				</td>
+			</tr>
+			<tr data-order="AIX" id="AIX">
+
+				<td class="attributes"><code>integer</code></td>
+				<td class="name">
+					<code>
+						<a href="source-class-Environ.Platform.html#44-47" title="Go to source code"><b>AIX</b></a>
+					</code>
+
+					<div class="description short">
+						
+					</div>
+
+					<div class="description detailed hidden">
+						
+
+					</div>
+				</td>
+				<td class="value">
+					<div>
+						<a href="#AIX" class="anchor">#</a>
+						<code><span class="php-num">0b01000001</span></code>
+					</div>
+				</td>
+			</tr>
+			<tr data-order="SOLARIS" id="SOLARIS">
+
+				<td class="attributes"><code>integer</code></td>
+				<td class="name">
+					<code>
+						<a href="source-class-Environ.Platform.html#49-52" title="Go to source code"><b>SOLARIS</b></a>
+					</code>
+
+					<div class="description short">
+						
+					</div>
+
+					<div class="description detailed hidden">
+						
+
+					</div>
+				</td>
+				<td class="value">
+					<div>
+						<a href="#SOLARIS" class="anchor">#</a>
+						<code><span class="php-num">0b10000001</span></code>
+					</div>
+				</td>
+			</tr>
+			</table>
+		</div>
+
+
+
+
+</div>
+	</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+<script src="resources/combined.js"></script>
+<script src="elementlist.js"></script>
+</body>
+</html>

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class Environ\Runtime</title>
+
+	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
+	<link rel="stylesheet" href="resources/style.css?a2b5efb503881470385230f40f9bcc3c94d665e7">
+
+</head>
+
+<body>
+	<nav id="navigation" class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a href="index.html" class="navbar-brand">Overview</a>
+			</div>
+			<div class="collapse navbar-collapse">
+
+                <form id="search" class="navbar-form navbar-left" role="search">
+                    <input type="hidden" name="cx" value="">
+                    <input type="hidden" name="ie" value="UTF-8">
+                    <div class="form-group">
+                        <input type="text" name="q" class="search-query form-control" placeholder="Search">
+					</div>
+				</form>
+
+				<ul class="nav navbar-nav">
+					<li>
+						<a href="namespace-Environ.html" title="Summary of Environ"><span>Namespace</span></a>
+					</li>
+					<li class="active">
+<span>Class</span>					</li>
+
+
+
+
+
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div id="left">
+	<div id="menu">
+
+		<div id="groups">
+				<h3>Namespaces</h3>
+			<ul>
+					<li class="active">
+						<a href="namespace-Environ.html">
+							Environ						</a>
+							</li>
+			</ul>
+		</div>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Environ.Platform.html">Platform</a></li>
+				<li class="active"><a href="class-Environ.Runtime.html">Runtime</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+	<div id="rightInner">
+<div id="content" class="class">
+	<h1>Class Runtime</h1>
+
+
+	<div class="description">
+	<p>Provides information about the current PHP runtime.</p>
+	</div>
+
+
+
+
+
+
+
+
+
+	<div class="alert alert-info">
+		<b>Abstract</b><br>
+		
+		<b>Namespace:</b> <a href="namespace-Environ.html">Environ</a><br>
+		
+
+			<b>Located at</b> <a href="source-class-Environ.Runtime.html#4-98" title="Go to source code">Runtime.php</a>
+		<br>
+	</div>
+
+
+
+		<div class="panel panel-default">
+			<div class="panel-heading"><h2>Methods summary</h2></div>
+			<table class="summary table table-bordered table-striped methods" id="methods">
+		<tr data-order="is64Bit" id="_is64Bit">
+
+			<td class="attributes"><code>
+				 public static
+				boolean
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_is64Bit">#</a>
+			<code><a href="source-class-Environ.Runtime.html#9-25" title="Go to source code">is64Bit</a>( )</code>
+
+			<div class="description short">
+				<p>Checks if the environment is running in a 64-bit environment.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Checks if the environment is running in a 64-bit environment.</p>
+
+<p>Note that this checks for support for 64-bit operations in the PHP
+runtime, not the system architecture. To check if the system is 64-bit,
+<a href="Platform::is64Bit()">Platform::is64Bit()</a>.</p>
+
+<p>Note that versions older than PHP 7 did not support true 64-bit on
+Windows. As a result, this method will always return false on older
+versions of PHP on Windows.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						boolean<br>True if the environment is 64-bit, otherwise false.
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="path" id="_path">
+
+			<td class="attributes"><code>
+				 public static
+				string
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_path">#</a>
+			<code><a href="source-class-Environ.Runtime.html#27-35" title="Go to source code">path</a>( )</code>
+
+			<div class="description short">
+				<p>Gets the path to the current interpreter executable.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Gets the path to the current interpreter executable.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						string<br>The path to the current interpreter executable.
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="version" id="_version">
+
+			<td class="attributes"><code>
+				 public static
+				string
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_version">#</a>
+			<code><a href="source-class-Environ.Runtime.html#37-56" title="Go to source code">version</a>( )</code>
+
+			<div class="description short">
+				<p>Gets the version number of the runtime as a string.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Gets the version number of the runtime as a string.</p>
+
+<p>Note that the versioning scheme can vary between different runtimes. You
+may need to do additional processing on the returned string to use it for
+non-display purposes.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						string<br>The runtime version string.
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="isCanonical" id="_isCanonical">
+
+			<td class="attributes"><code>
+				 public static
+				boolean
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_isCanonical">#</a>
+			<code><a href="source-class-Environ.Runtime.html#58-66" title="Go to source code">isCanonical</a>( )</code>
+
+			<div class="description short">
+				<p>Checks if the runtime is the official PHP group interpreter.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Checks if the runtime is the official PHP group interpreter.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						boolean<br>True if the runtime is a canonical interpreter, otherwise false.
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="isHHVM" id="_isHHVM">
+
+			<td class="attributes"><code>
+				 public static
+				boolean
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_isHHVM">#</a>
+			<code><a href="source-class-Environ.Runtime.html#68-76" title="Go to source code">isHHVM</a>( )</code>
+
+			<div class="description short">
+				<p>Checks if the runtime is HHVM.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Checks if the runtime is HHVM.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						boolean<br>True if the runtime is HHVM, otherwise false.
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="isJPHP" id="_isJPHP">
+
+			<td class="attributes"><code>
+				 public static
+				boolean
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_isJPHP">#</a>
+			<code><a href="source-class-Environ.Runtime.html#78-87" title="Go to source code">isJPHP</a>( )</code>
+
+			<div class="description short">
+				<p>Checks if the runtime is JPHP.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Checks if the runtime is JPHP.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						boolean<br>True if the runtime is JPHP, otherwise false.
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="isServerModule" id="_isServerModule">
+
+			<td class="attributes"><code>
+				 public static
+				boolean
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_isServerModule">#</a>
+			<code><a href="source-class-Environ.Runtime.html#89-97" title="Go to source code">isServerModule</a>( )</code>
+
+			<div class="description short">
+				<p>Checks if the execution environment is running as a server module.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Checks if the execution environment is running as a server module.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						boolean<br>True if the environment is running as a server module, otherwise false.
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+			</table>
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+</div>
+	</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+<script src="resources/combined.js"></script>
+<script src="elementlist.js"></script>
+</body>
+</html>
