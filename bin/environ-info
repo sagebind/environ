@@ -16,6 +16,7 @@ printf("OS release\t\t: %s%s", Platform::release(), PHP_EOL);
 printf("OS version\t\t: %s%s", Platform::version(), PHP_EOL);
 printf("Linux distribution: %s%s", json_encode(Platform::linuxDistribution(), JSON_PRETTY_PRINT), PHP_EOL);
 printf("CPU architecture:\t: %s%s", Platform::getArch(), PHP_EOL);
+printf("64-bit\t\t\t: %s%s", Platform::is64Bit() ? 'yes' : 'no', PHP_EOL);
 printf("Number of processors\t: %d%s", Platform::getCpuCount(), PHP_EOL);
 
 printf('%s-- Runtime --%1$s', PHP_EOL);

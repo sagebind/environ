@@ -29,6 +29,12 @@ printf("Operating system: %s\n", Platform::getOSName());
 printf("Linux distro: %s\n", Platform::linuxDistribution());
 ```
 
+You can also test some of the results environ gives for your current environment with a provided script:
+
+```php
+$ vendor/bin/environ-info
+```
+
 ## Reference
 You can view a very detailed reference online [here](http://coderstephen.github.io/environ/api).
 

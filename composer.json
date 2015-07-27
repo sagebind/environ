@@ -9,12 +9,15 @@
     "require": {
         "php": ">=5.4"
     },
+    "require-dev": {
+        "apigen/apigen": "^4.1"
+    },
     "autoload": {
         "psr-4": {
             "Environ\\": "src"
         }
     },
-    "require-dev": {
-        "apigen/apigen": "^4.1"
-    }
+    "bin": [
+        "bin/environ-show"
+    ]
 }
