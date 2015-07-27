@@ -14,37 +14,37 @@ abstract class Platform
     /**
      * @var int Indicates a Unix-based or Unix-like operating system.
      */
-    const UNIX = 0b0001;
+    const UNIX = 0b00000001;
 
     /**
      * @var int Indicates a Microsoft Windows operating system.
      */
-    const WINDOWS = 0b0010;
+    const WINDOWS = 0b00000010;
 
     /**
      * @var int Indicates a Linux operating system or Linux distribution.
      */
-    const LINUX = 0b0101;
+    const LINUX = 0b00000101;
 
     /**
      * @var int Indicates a Darwin-based system, such as Mac OS X.
      */
-    const DARWIN = 0b1001;
+    const DARWIN = 0b00001001;
 
     /**
      * @var int Indicates a FreeBSD operating system.
      */
-    const FREEBSD = 0b10001;
+    const FREEBSD = 0b00010001;
 
     /**
      * @var int Hewlett-Packard UNIX systems.
      */
-    const HP_UX = 0b100001;
+    const HP_UX = 0b00100001;
 
     /**
      * @var int IBM AIX (Advanced Interactive eXecutive) systems.
      */
-    const AIX = 0b1000001;
+    const AIX = 0b01000001;
 
     /**
      * @var int Indicates a Sun Solaris/SunOS or OpenSolaris operating system.
@@ -103,10 +103,10 @@ abstract class Platform
     /**
      * Gets the operating system the environment is currently running on.
      *
-     * @return int Bitmask representing the operating system constant.
-     *
      * This method has not been tested on all platforms, so it may not detect
      * untested platforms correctly.
+     *
+     * @return int Bitmask representing the operating system constant.
      */
     public static function getOS()
     {
@@ -158,7 +158,10 @@ abstract class Platform
     }
 
     /**
-     * Gets the operating system name.
+     * Gets an operating system name suitable for display purposes.
+     *
+     * This returns a string that corresponds to the operating system returned
+     * by {@see Platform::getOS()}, not the name returned by the system itself.
      *
      * @return string The operating system name.
      */
@@ -189,12 +192,12 @@ abstract class Platform
     /**
      * Checks if the system is a given platform.
      *
-     * Supports derivative operating systems. For example, if the platform is Linux, checking for Unix
-     * will also return true.
+     * Supports derivative operating systems. For example, if the platform is
+     * Linux, checking for Unix will also return true.
      *
      * @param int $platform The platform to check.
      *
-     * @return bool True if the system is the given OS or a derivative.
+     * @return bool True if the system is the given OS or a derivative, otherwise false.
      */
     public static function isOS($os)
     {
@@ -213,10 +216,10 @@ abstract class Platform
      * This method tries really hard to return an alphanumeric string, maybe
      * even in SemVer format, but there are no guarantees.
      *
-     * @see https://msdn.microsoft.com/library/windows/desktop/ms724832.aspx for
-     * a guide on what Windows release versions can indicate.
+     * {@see https://msdn.microsoft.com/library/windows/desktop/ms724832.aspx)
+     * for a guide on what Windows release versions can indicate.
      *
-     * @return string
+     * @return string A release version string.
      */
     public static function release()
     {
@@ -302,7 +305,7 @@ abstract class Platform
             $info['name'] = 'suse';
 
             if (isset($release['VERSION'])) {
-                $info['release'] = $release['VERSION'].'.'.$release['PATCHLEVEL'];
+                $info['release'] = $release['VERSION'] . '.' . $release['PATCHLEVEL'];
             }
         }
 
@@ -414,7 +417,7 @@ abstract class Platform
     }
 
     /**
-     * Gets the Mac OS X version.
+     * Gets the Mac OS X version string.
      *
      * @return string
      */
@@ -425,7 +428,7 @@ abstract class Platform
 
         $plistNodes = $systemVersion->documentElement->childNodes->item(0)->childNodes;
 
-        for ($i = 0; $i < $plistNodes->length; $i++) {
+        for ($i = 0; $i < $plistNodes->length; ++$i) {
             if ($plistNodes->item($i)->nodeValue == 'ProductVersion') {
                 return $plistNodes->item($i + 1)->nodeValue;
             }
