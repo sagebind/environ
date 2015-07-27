@@ -33,6 +33,29 @@ You can also test some of the results environ gives for your current environment
 
 ```sh
 $ vendor/bin/environ-info
+
+-- Platform --
+Machine name         : myboss-laptop
+Operating system     : Linux
+OS release           : 3.19.0-23-generic
+OS version           : #24-Ubuntu SMP Tue Jul 7 18:52:55 UTC 2015
+CPU architecture     : x86_64
+64-bit               : yes
+Number of processors : 8
+
+-- Linux distribution --
+name                 : ubuntu
+release              : 15.04
+codename             : vivid
+pretty_name          : Ubuntu 15.04
+
+-- Runtime --
+Interpreter binary   : /usr/bin/php5
+Version              : 5.6.4-4ubuntu6.2
+64-bit               : yes
+HHVM                 : no
+JPHP                 : no
+Server module        : no
 ```
 
 ## Reference
