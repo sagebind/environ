@@ -1,5 +1,7 @@
 # Environ
+[![Version](https://img.shields.io/packagist/v/coderstephen/environ.svg)](https://packagist.org/packages/coderstephen/environ)
 [![License](https://img.shields.io/packagist/l/coderstephen/environ.svg)](https://packagist.org/packages/coderstephen/environ)
+[![Downloads](https://img.shields.io/packagist/dt/coderstephen/environ.svg)](https://packagist.org/packages/coderstephen/environ)
 
 A simple package for discovering information about an execution environment and platform. Generic name, generic purpose.
 
