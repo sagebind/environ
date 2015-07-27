@@ -31,7 +31,7 @@ printf("Linux distro: %s\n", Platform::linuxDistribution());
 
 You can also test some of the results environ gives for your current environment with a provided script:
 
-```php
+```sh
 $ vendor/bin/environ-info
 ```
 
