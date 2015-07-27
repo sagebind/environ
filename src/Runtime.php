@@ -87,6 +87,24 @@ abstract class Runtime
     }
 
     /**
+     * Checks if the runtime has Zend thread safety enabled.
+     *
+     * @return bool True if the runtime is thread safe.
+     */
+    public static function isThreadSafe()
+    {
+        if (!function_exists('phpinfo')) {
+            return false;
+        }
+
+        ob_start();
+        phpinfo(INFO_GENERAL);
+        $info = strip_tags(ob_get_clean());
+
+        return preg_match('/thread\s+safety\W+enabled/i', $info) === 1;
+    }
+
+    /**
      * Checks if the execution environment is running as a server module.
      *
      * @return bool True if the environment is running as a server module, otherwise false.

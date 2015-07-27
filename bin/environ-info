@@ -37,6 +37,7 @@ function main() {
     printval('64-bit', Runtime::is64Bit());
     printval('HHVM', Runtime::isHHVM());
     printval('JPHP', Runtime::isJPHP());
+    printval('Thread safe', Runtime::isThreadSafe());
     printval('Server module', Runtime::isServerModule());
 }
 

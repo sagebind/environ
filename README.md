@@ -53,6 +53,7 @@ pretty_name          : Ubuntu 15.04
 Interpreter binary   : /usr/bin/php5
 Version              : 5.6.4-4ubuntu6.2
 64-bit               : yes
+Thread safe          : no
 HHVM                 : no
 JPHP                 : no
 Server module        : no
