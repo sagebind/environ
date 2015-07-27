@@ -1,6 +1,9 @@
 # composer dependencies
-/vendor/
+vendor/
 
 # ide files
 *.sublime-project
 *.sublime-workspace
+
+# generated docs
+api/
