@@ -81,6 +81,25 @@ abstract class Platform
     }
 
     /**
+     * Checks if the system platform is 64-bit capable.
+     *
+     * Note that this does not necessarily represent the architecture or 64-bit
+     * capabilities of the processor(s); this merely checks if the platform or
+     * operating system is 64-bit. These things may be different on, for example,
+     * a 32-bit version of Windows on a 64-bit machine.
+     *
+     * In addition, even if this function returns true, the current PHP runtime
+     * may not be 64-bit. To check if the runtime is also 64-bit, use
+     * {@see Runtime::is64Bit()}.
+     *
+     * @return bool True if the platform is 64-bit, otherwise false.
+     */
+    public static function is64Bit()
+    {
+        return php_uname('m') === 'x86_64';
+    }
+
+    /**
      * Gets the CPU architecture.
      *
      * @return string The CPU architecture name.
