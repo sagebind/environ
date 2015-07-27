@@ -3,23 +3,41 @@
 use Environ\Platform;
 use Environ\Runtime;
 
-if (!ini_get('date.timezone')) {
-    ini_set('date.timezone', 'UTC');
-}
-
 require dirname(__DIR__).'/vendor/autoload.php';
 
-printf('-- Platform --%s', PHP_EOL);
-printf("Machine name:\t\t: %s%s", Platform::getMachineName(), PHP_EOL);
-printf("Operating system\t: %s%s", Platform::getOSName(), PHP_EOL);
-printf("OS release\t\t: %s%s", Platform::release(), PHP_EOL);
-printf("OS version\t\t: %s%s", Platform::version(), PHP_EOL);
-printf("Linux distribution: %s%s", json_encode(Platform::linuxDistribution(), JSON_PRETTY_PRINT), PHP_EOL);
-printf("CPU architecture:\t: %s%s", Platform::getArch(), PHP_EOL);
-printf("64-bit\t\t\t: %s%s", Platform::is64Bit() ? 'yes' : 'no', PHP_EOL);
-printf("Number of processors\t: %d%s", Platform::getCpuCount(), PHP_EOL);
+function printval($key, $value) {
+    if (is_bool($value)) {
+        $value = ($value ? 'yes' : 'no');
+    }
 
-printf('%s-- Runtime --%1$s', PHP_EOL);
-printf("Interpreter binary\t: %s%s", Runtime::path(), PHP_EOL);
-printf("Version\t\t\t: %s%s", Runtime::version(), PHP_EOL);
-printf("64-bit\t\t\t: %s%s", Runtime::is64Bit() ? 'yes' : 'no', PHP_EOL);
+    printf('%-20s : %s%s', $key, $value, PHP_EOL);
+}
+
+function main() {
+    printf('-- Platform --%s', PHP_EOL);
+    printval('Machine name', Platform::getMachineName());
+    printval('Operating system', Platform::getOSName());
+    printval('OS release', Platform::release());
+    printval('OS version', Platform::version());
+    printval('CPU architecture', Platform::getArch());
+    printval('64-bit', Platform::is64Bit());
+    printval('Number of processors', Platform::getCpuCount());
+
+    if (!empty($distro = Platform::linuxDistribution())) {
+        printf('%s-- Linux distribution --%1$s', PHP_EOL);
+
+        foreach (Platform::linuxDistribution() as $key => $value) {
+            printval($key, $value);
+        }
+    }
+
+    printf('%s-- Runtime --%1$s', PHP_EOL);
+    printval('Interpreter binary', Runtime::path());
+    printval('Version', Runtime::version());
+    printval('64-bit', Runtime::is64Bit());
+    printval('HHVM', Runtime::isHHVM());
+    printval('JPHP', Runtime::isJPHP());
+    printval('Server module', Runtime::isServerModule());
+}
+
+main();
