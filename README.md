@@ -65,5 +65,8 @@ You can view a very detailed reference online [here](http://coderstephen.github.
 ## Contributing
 Want to contribute? The best way to contribute is to test the code on a wide array of systems with varying setups and to verify the results are as expected. If they aren't, just [create a new issue](https://github.com/coderstephen/environ/issues/new) here on GitHub and we will fix it. If you are adventurous, feel free to fork, patch & submit a pull request that fixes the issue as well.
 
+## Where to get help
+Need help? Just [send me an email](mailto:me@stephencoakley.com) with your questions. Be sure to add "environ" to the message subject line so I know how I can help you out.
+
 ## License
 This library is licensed under the MIT license. See the [LICENSE](LICENSE) file for details.
